@@ -1,0 +1,25 @@
+{
+    "name" : "Jacket's MiniMap",
+    "description" : "This mod allows you to use a minimap",
+    "author" : "EntranceJew (credits Someone, Vylax, Offyerrocker)",
+    "contact" : "EntranceJew#6969",
+    "version" : "1.0.0",
+    "priority" : 10,
+    "blt_version" : 2,
+    "updates" : [
+        {
+            "identifier" : "jackets_minimap"
+        }
+    ],
+    "hooks" :
+    [
+        {
+            "hook_id": "lib/managers/menumanager",
+            "script_path": "lua/menu.lua"
+        },
+        {
+            "hook_id": "lib/managers/hudmanagerpd2",
+            "script_path": "lua/minimap.lua"
+        }
+    ]
+}
