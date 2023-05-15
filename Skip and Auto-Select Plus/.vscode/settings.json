@@ -1,0 +1,19 @@
+{
+    "Lua.diagnostics.globals": [
+        "GuiTweakData",
+        "RequiredScript",
+        "MultiProfileItemGui",
+        "MenuCallbackHandler",
+        "Hooks",
+        "QuickMenu",
+        "managers",
+        "MenuHelper",
+        "StageEndScreenGui",
+        "game_state_machine",
+        "LootDropScreenGui",
+        "IngameWaitingForPlayersState",
+        "json",
+        "SavePath",
+        "ModPath"
+    ]
+}
