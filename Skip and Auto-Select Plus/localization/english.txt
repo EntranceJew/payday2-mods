@@ -1,14 +1,13 @@
 {
-  menu_skipandautoselectplus_title: "Skip and Auto Select",
-  menu_skipandautoselectplus_desc: "Allows automatic skipping of screens after a delay.\nRequires a game restart for changes to take effect.",
-  menu_skipandautoselectplus_SKIP_STAT_SCREEN_DELAY_title: "Stat Screen Delay",
-  menu_skipandautoselectplus_SKIP_STAT_SCREEN_DELAY_desc: "The stats playout that occurs after a heist.",
-  menu_skipandautoselectplus_SKIP_LOOT_SCREEN_DELAY_title: "Loot Screen Delay",
-  menu_skipandautoselectplus_SKIP_LOOT_SCREEN_DELAY_desc: "The delay that shows loot cards after a heist.",
-  menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_title: "Black Screen Delay",
-  menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_desc: "The pre-heist briefing / difficulty screen.",
-
-  skipandautoselectplus_restart_required: "Restart Required",
-  skipandautoselectplus_restart_required_desc: "A game restart is required for changes to take effect.",
-  skipandautoselectplus_button_ok: "OK",
+  "menu_skipandautoselectplus_title": "Skip and Auto Select",
+  "menu_skipandautoselectplus_desc": "Allows automatic skipping of screens after a delay.\nRequires a game restart for changes to take effect.",
+  "menu_skipandautoselectplus_SKIP_STAT_SCREEN_DELAY_title": "Stat Screen Delay",
+  "menu_skipandautoselectplus_SKIP_STAT_SCREEN_DELAY_desc": "The stats playout that occurs after a heist.",
+  "menu_skipandautoselectplus_SKIP_LOOT_SCREEN_DELAY_title": "Loot Screen Delay",
+  "menu_skipandautoselectplus_SKIP_LOOT_SCREEN_DELAY_desc": "The delay that shows loot cards after a heist.",
+  "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_title": "Black Screen Delay",
+  "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_desc": "The pre-heist briefing / difficulty screen.",
+  "skipandautoselectplus_restart_required": "Restart Required",
+  "skipandautoselectplus_restart_required_desc": "A game restart is required for changes to take effect.",
+  "skipandautoselectplus_button_ok": "OK"
 }

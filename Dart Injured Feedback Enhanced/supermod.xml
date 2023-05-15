@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<mod>
+    <assets base_path="assets/">
+        <group name="guis/textures/pd2/">
+            <file :name="hitdirection.texture"/>
+            <file :name="hitdirection_bold.texture"/>
+        </group>
+    </assets>
+</mod>
