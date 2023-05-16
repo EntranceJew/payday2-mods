@@ -1,0 +1,111 @@
+diff -uraN "/base/ehi.xml" "/patch/ehi.xml"
+--- "/base/ehi.xml"	2023-05-05 07:41:19.010547300 -0500
++++ "/patch/ehi.xml"	2023-05-15 16:28:05.721812600 -0500
+@@ -15,6 +15,7 @@
+             <post :hook_id="hud/hudchallengenotification" :script_path="HudChallengeNotification.lua" />
+             <post :hook_id="gameplaycentralmanager" :script_path="GamePlayCentralManager.lua"/>
+             <post :hook_id="gageassignmentmanager" :script_path="GageAssignmentManager.lua" />
++            <post :hook_id="chatmanager" :script_path="ChatManager.lua" />
+             <post :hook_id="enemymanager" :script_path="EnemyManager.lua" />
+ 
+             <post :hook_id="experiencemanager" :script_path="ExperienceManager.lua" />
+diff -uraN "/base/lua/ChatManager.lua" "/patch/lua/ChatManager.lua"
+--- "/base/lua/ChatManager.lua"	1969-12-31 18:00:00.000000000 -0600
++++ "/patch/lua/ChatManager.lua"	2023-05-15 17:49:27.812491400 -0500
+@@ -0,0 +1,36 @@
++local EHI = EHI
++if EHI:CheckLoadHook("ChatManager") then
++    return
++end
++
++dofile(EHI.LuaPath .. "trackers/EHIChatCodesTracker.lua")
++local original =
++{
++    send_message = ChatManager.send_message,
++    _receive_message = ChatManager._receive_message
++}
++
++function ChatManager:CheckCodeInMessage(message)
++	if string.len(message) == 4 or string.len(message) == 3 then
++		if tonumber(message) ~= nil then
++			return true, message
++		end
++	end
++    return false, nil
++end
++
++function ChatManager:send_message(channel_id, sender, message, ...)
++    original.send_message(self, channel_id, sender, message, ...)
++    local found_code, msg = self:CheckCodeInMessage(message)
++    if found_code then
++        managers.ehi_tracker:CallFunction("ChatCodes", "SetCode", msg)
++    end
++end
++
++function ChatManager:_receive_message(channel_id, name, message, ...)
++    original._receive_message(self, channel_id, name, message, ...)
++    local found_code, msg = self:CheckCodeInMessage(message)
++    if found_code then
++        managers.ehi_tracker:CallFunction("ChatCodes", "SetCode", msg)
++    end
++end
+\ No newline at end of file
+diff -uraN "/base/lua/EHITrackerManager.lua" "/patch/lua/EHITrackerManager.lua"
+--- "/base/lua/EHITrackerManager.lua"	2023-05-12 08:05:35.433778400 -0500
++++ "/patch/lua/EHITrackerManager.lua"	2023-05-15 15:35:19.284460900 -0500
+@@ -1025,6 +1025,7 @@
+     dofile(path .. "EHIDailyTrackers.lua")
+     dofile(path .. "EHIInaccurateTrackers.lua")
+     dofile(path .. "EHIColoredCodesTracker.lua")
++    dofile(path .. "EHIChatCodesTracker.lua")
+     if EHI:GetOption("xp_panel") <= 2 and EHI:IsXPTrackerVisible() then
+         dofile(path .. "EHIXPTracker.lua")
+     end
+diff -uraN "/base/lua/HUDManagerPD2.lua" "/patch/lua/HUDManagerPD2.lua"
+--- "/base/lua/HUDManagerPD2.lua"	2023-05-13 11:20:07.618885100 -0500
++++ "/patch/lua/HUDManagerPD2.lua"	2023-05-15 16:52:58.814026600 -0500
+@@ -62,6 +62,11 @@
+             class = "EHIEnemyCountTracker"
+         })
+     end
++    self.ehi:AddTracker({
++        id = "ChatCodes",
++        flash = false,
++        class = "EHIChatCodesTracker"
++    })
+     if tweak_data.levels:IsStealthAvailable() then
+         if EHI:GetOption("show_pager_tracker") then
+             local base = tweak_data.player.alarm_pager.bluff_success_chance_w_skill
+diff -uraN "/base/lua/core.lua" "/patch/lua/core.lua"
+--- "/base/lua/core.lua"	2023-05-13 12:48:14.042259900 -0500
++++ "/patch/lua/core.lua"	2023-05-15 15:35:03.485186900 -0500
+@@ -205,6 +205,7 @@
+         AchievementBagValue = "EHIAchievementBagValueTracker",
+         AssaultDelay = "EHIAssaultDelayTracker",
+         ColoredCodes = "EHIColoredCodesTracker",
++        ChatCodes = "EHIChatCodesTracker",
+         Inaccurate = "EHIInaccurateTracker",
+         InaccurateWarning = "EHIInaccurateWarningTracker",
+         InaccuratePausable = "EHIInaccuratePausableTracker",
+diff -uraN "/base/lua/trackers/EHIChatCodesTracker.lua" "/patch/lua/trackers/EHIChatCodesTracker.lua"
+--- "/base/lua/trackers/EHIChatCodesTracker.lua"	1969-12-31 18:00:00.000000000 -0600
++++ "/patch/lua/trackers/EHIChatCodesTracker.lua"	2023-05-15 17:02:33.425725300 -0500
+@@ -0,0 +1,17 @@
++EHIChatCodesTracker = class(EHITracker)
++EHIChatCodesTracker._update = false
++EHIChatCodesTracker._forced_icons = { EHI.Icons.Interact }
++
++function EHIChatCodesTracker:Format(code)
++    if not code then
++        return "???"
++    end
++    return tostring(code)
++end
++
++function EHIChatCodesTracker:SetCode(code)
++    local text = self._text
++    text:set_text(self:Format(code))
++    self:FitTheText(text)
++    self:AnimateBG()
++end
+\ No newline at end of file
