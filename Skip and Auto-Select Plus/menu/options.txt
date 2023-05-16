@@ -40,6 +40,14 @@
       "min": 0,
       "max": 60,
       "step": 0.01
-    }
+    },
+    {
+			"type" : "toggle",
+			"id" : "skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility",
+			"title" : "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility_title",
+			"description" : "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility_desc",
+			"callback" : "callback_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility",
+			"value" : "SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility"
+		}
   ]
 }

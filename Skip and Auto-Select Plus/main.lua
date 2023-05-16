@@ -4,7 +4,8 @@ SkipAndAutoSelectPlus.save_path = SkipAndAutoSelectPlus.save_path or SavePath ..
 SkipAndAutoSelectPlus.settings = { -- Defaults from WolfHud.
 	SKIP_STAT_SCREEN_DELAY = 3,
 	SKIP_LOOT_SCREEN_DELAY = 5,
-	SKIP_BLACK_SCREEN_DELAY = 7
+	SKIP_BLACK_SCREEN_DELAY = 1,
+	SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility = false,
 }
 
 function SkipAndAutoSelectPlus:save()
@@ -88,8 +89,21 @@ elseif string.lower(RequiredScript) == "lib/states/ingamewaitingforplayers" then
 	function IngameWaitingForPlayersState:update(t, ...)
 		update_original(self, t, ...)
 
-		if self._skip_promt_shown and SkipAndAutoSelectPlus.settings.SKIP_BLACK_SCREEN_DELAY >= 0 then
-			self._auto_continue_t = self._auto_continue_t or (t + SkipAndAutoSelectPlus.settings.SKIP_BLACK_SCREEN_DELAY)
+		local goal_time = SkipAndAutoSelectPlus.settings.SKIP_BLACK_SCREEN_DELAY
+		if SkipAndAutoSelectPlus.settings.SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility then
+			if managers.job:has_active_job() then
+				local difficulty = managers.job:current_difficulty_stars()
+				for i = 1, difficulty do
+					goal_time = goal_time + 0.4
+				end
+				if difficulty + 2 == #tweak_data.difficulties then
+					goal_time = goal_time + 0.5
+				end
+			end
+		end
+
+		if self._skip_promt_shown and goal_time >= 0 then
+			self._auto_continue_t = self._auto_continue_t or (t + goal_time)
 			if t >= self._auto_continue_t then
 				self:_skip()
 			end
@@ -107,6 +121,10 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanager" then
 
 		MenuCallbackHandler.callback_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY = function(self,item)
 			SkipAndAutoSelectPlus.settings.SKIP_BLACK_SCREEN_DELAY = tonumber(item:value())
+		end
+
+		MenuCallbackHandler.callback_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility = function(this, item)
+			SkipAndAutoSelectPlus.settings.SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility = item:value() == 'on'
 		end
 
 		MenuCallbackHandler.callback_skipandautoselectplus_close = function(self)

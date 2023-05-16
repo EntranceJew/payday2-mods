@@ -14,6 +14,11 @@
         "IngameWaitingForPlayersState",
         "json",
         "SavePath",
-        "ModPath"
-    ]
+        "ModPath",
+        "tweak_data"
+    ],
+    "Lua.workspace.library": [
+        "C:/Users/ej/AppData/Roaming/Code/User/globalStorage/sumneko.lua/addonManager/addons/garrysmod/module/library"
+    ],
+    "Lua.workspace.checkThirdParty": false
 }

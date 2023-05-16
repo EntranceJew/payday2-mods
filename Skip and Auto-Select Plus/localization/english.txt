@@ -7,6 +7,8 @@
   "menu_skipandautoselectplus_SKIP_LOOT_SCREEN_DELAY_desc": "The delay that shows loot cards after a heist.",
   "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_title": "Black Screen Delay",
   "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_desc": "The pre-heist briefing / difficulty screen.",
+  "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility_title": "Difficulty Screen Animation Compatibility",
+  "menu_skipandautoselectplus_SKIP_BLACK_SCREEN_DELAY_difficulty_screen_animation_compatibility_desc": "Delays the Black Screen Delay until after the animation Difficulty Screen Animation has is estimated to complete.",
   "skipandautoselectplus_restart_required": "Restart Required",
   "skipandautoselectplus_restart_required_desc": "A game restart is required for changes to take effect.",
   "skipandautoselectplus_button_ok": "OK"
