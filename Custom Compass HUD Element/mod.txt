@@ -1,0 +1,21 @@
+{
+	"name" : "Custom Compass HUD Element",
+	"description" : "Adds a Compass element to the HUD.\n(Standalone version separated from KineticHUD.)",
+	"author" : "EntranceJew (credits Offyerrocker)",
+	"contact" : "EntranceJew#6969",
+	"version" : "1.0",
+	"blt_version" : 2,
+	"priority" : 1,
+	"color" : "46 161 255",
+	"image"  : "compass_icon.png",
+	"hooks" : [
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "hudcompass.lua"
+		},
+		{
+			"hook_id" : "lib/managers/hudmanagerpd2",
+			"script_path" : "hudcompass.lua"
+		}
+	]
+}
