@@ -772,18 +772,30 @@ end
 
 function HUDMiniMap:_update_criminal_positions()
 	for id, data in pairs(managers.criminals:characters()) do
-		if not self._criminal_avatars[id] and data.taken and alive(data.unit) and data.unit:id() ~= -1 and data.unit ~= managers.player:player_unit() then
-			local avatar = self._panel:text({
-				align = "center",
-				vertical = "center",
-				visible = false,
-				font = tweak_data.menu.pd2_small_font,
-				font_size = 12,
-				color = tweak_data.chat_colors[data.data.panel_id]:with_alpha(1),
-				blend_mode = "normal",
-				layer = 1,
-			})
-			self._criminal_avatars[id] = { avatar = avatar, unit = data.unit, is_ai = data.data.ai }
+		if not self._criminal_avatars[id] and data.taken and alive(data.unit) and data.unit:id() ~= -1 then
+			local color = managers.criminals:character_color_id_by_unit(data.unit)
+			if HopLib then
+				local info = HopLib:unit_info_manager():get_info(data.unit)
+				if info:color_id() and info:color_id() < #tweak_data.chat_colors and tweak_data.chat_colors[info:color_id()] then
+					color = tweak_data.chat_colors[info:color_id()]
+				end
+			end
+
+			if data.unit ~= managers.player:player_unit() then
+				local avatar = self._panel:text({
+					align = "center",
+					vertical = "center",
+					visible = false,
+					font = tweak_data.menu.pd2_small_font,
+					font_size = 12,
+					color = color,
+					blend_mode = "normal",
+					layer = 1,
+				})
+				self._criminal_avatars[id] = { avatar = avatar, unit = data.unit, is_ai = data.data.ai }
+			else
+				self._player_avatar:set_color(color)
+			end
 		end
 	end
 
