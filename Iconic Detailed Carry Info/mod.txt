@@ -1,0 +1,23 @@
+{
+	"name" : "Iconic Detailed Carry Info",
+	"description" : "Shows carry info in an iconic fashion.",
+	"author" : "EntranceJew (credit Undeadsewer, TdlQ)",
+	"contact" : "EntranceJew#6969",
+	"version" : "1",
+	"pre_hooks" : [
+		{
+			"hook_id" : "lib/entry",
+			"script_path" : "lua/entry.lua"
+		},
+	],
+	"hooks" : [
+		{ 
+			"hook_id" : "lib/managers/hud/hudtemp",
+			"script_path" : "lib/managers/hud/hudtemp.lua" 
+		},
+		{
+			"hook_id" : "lib/managers/menumanager",
+			"script_path" : "lua/menumanager.lua"
+		}
+	],
+}

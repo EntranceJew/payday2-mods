@@ -1,0 +1,25 @@
+{
+    "Lua.diagnostics.globals": [
+        "tweak_data",
+        "managers",
+        "Color",
+        "ModPath",
+        "RequiredScript",
+        "Idstring",
+        "DB",
+        "HUDTemp",
+        "Hooks",
+        "MenuCallbackHandler",
+        "MenuHelper",
+        "SystemInfo",
+        "file",
+        "BLT",
+        "json",
+        "SavePath",
+        "callback"
+    ],
+    "cSpell.words": [
+        "icdi",
+        "IDCI"
+    ]
+}

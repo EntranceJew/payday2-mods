@@ -1,0 +1,28 @@
+{
+	"icdi_options_menu_title": "Iconic Detailed Carry Info",
+	"icdi_options_menu_desc": "Adjust display configuration for IDCI.",
+
+	"idci_show_worth_panel_title": "Show Worth Panel",
+	"idci_show_worth_panel_desc": "Toggle the carried item's value being visible.",
+
+	"idci_colorize_sprint_indicator_title": "Colorize Sprint Indicator",
+	"idci_colorize_sprint_indicator_desc": "Makes the icon green when you can sprint, and red when you can't.",
+
+	"icdi_item_name_case_title": "Item Name Case",
+	"icdi_item_name_case_desc": "Change how the item is displayed for aesthetic purposes.",
+	"icdi_item_name_case_upper": "Uppercase",
+	"icdi_item_name_case_normal": "Normal",
+	"icdi_item_name_case_lower": "Lowercase",
+
+	"idci_scroll_phase_time_title": "Scroll Phase Time",
+	"idci_scroll_phase_time_desc": "How long it takes the item name to travel back and forth.",
+
+	"idci_scroll_phase_width_title": "Scroll Phase Width",
+	"idci_scroll_phase_width_desc": "How far the item name will scroll.",
+
+	"idci_scroll_phase_offset_title": "Scroll Phase Offset",
+	"idci_scroll_phase_offset_desc": "The origin position of the scrolling text."
+
+
+
+}
